@@ -45,12 +45,12 @@ end
 gem 'acts-as-taggable-on'
 gem 'carrierwave'
 gem 'devise'
-
 gem 'kaminari'
 gem 'ransack'
 gem 'simple_form'
 gem 'state_machine'
 gem 'stringex'
+
 
 group :test, :development do
   gem 'capybara'
