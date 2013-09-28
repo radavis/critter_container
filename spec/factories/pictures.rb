@@ -2,5 +2,7 @@
 
 FactoryGirl.define do
   factory :picture do
+    title: 'Cat'
+    image: 'http://placedog.com/300/400'
   end
 end
