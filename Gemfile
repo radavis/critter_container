@@ -45,6 +45,7 @@ end
 gem 'acts-as-taggable-on'
 gem 'carrierwave'
 gem 'devise'
+
 gem 'kaminari'
 gem 'ransack'
 gem 'simple_form'
