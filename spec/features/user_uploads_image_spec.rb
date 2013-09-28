@@ -15,9 +15,18 @@ feature 'user uploads image', %Q{
   # * Image must have title
 
   scenario 'user visits upload page' do
-    visit new_pictures_path
+    visit new_picture_path
+    save_and_open_page
     expect(page).to have_content('Title')
-    expect(page).to have_input('Choose file')
+    find_field('picture_image')
     expect(page).to have_content('Image URL')
+  end
+
+  scenario 'user uploads image successfully' do
+    visit new_picture_path
+    fill_in 'Title', with: "Cat"
+    fill_in "Image URL", with: "http://placedog.com/300/400"
+    click_on 'Create Picture'
+    expect(page).to have_content('What a purr-fect picture!')
   end
 end
