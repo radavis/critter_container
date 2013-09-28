@@ -20,7 +20,7 @@ So that I can have full access to the app's features.
     previous_count = User.count
 
     visit new_user_registration_path
-    fill_in 'Alias', with: 'Cat_lady'
+    fill_in 'Username', with: 'Cat_lady'
     fill_in 'Email', with: 'drm336@nyu.edu'
 
     fill_in 'user_password', with: '12345678'

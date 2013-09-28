@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :user do
-    #'alias', 'baby_elephant_lover'  # alias is a ruby keyword
+    username 'baby_elephant_lover'  
     email 'iloveelephants@gmail.com'
     password '87654321'
     password_confirmation '87654321'

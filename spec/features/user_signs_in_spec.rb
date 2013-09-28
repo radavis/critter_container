@@ -21,7 +21,7 @@ feature 'user signs in', %q{
 
   scenario 'user signs in with valid credentials' do
     visit new_user_registration_path
-    fill_in 'Alias', with: 'baby_elephant_lover'
+    fill_in 'Username', with: 'baby_elephant_lover'
     fill_in 'Email', with: 'user@example.com'
 
     fill_in 'user_password', with: '12345678'
