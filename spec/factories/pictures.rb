@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :picture do
-    title: 'Cat'
-    image: 'http://placedog.com/300/400'
+    title 'Cat'
+    remote_image_url 'http://placedog.com/300/400'
   end
 end

@@ -16,22 +16,49 @@ feature 'user uploads image', %Q{
 
   scenario 'user visits upload page' do
     visit new_picture_path
-    save_and_open_page
     expect(page).to have_content('Title')
     find_field('picture_image')
     expect(page).to have_content('Image URL')
   end
 
-  scenario 'user uploads image successfully' do
-    picture_1 = FactoryGirl.create(:picture)
-    expect(picture_1.image).to eql("http://placedog.com/300/400")
+  scenario 'user successfully uploads local image' do
+    path = Dir.pwd
+    count = Picture.all.size
+    visit new_picture_path
+    fill_in 'Title', with: "Cat"
+    attach_file('picture_image', "#{path}/spec/features/helveticat.jpg")
+    click_on 'Create Picture'
+    page.should have_css("img")
+    expect(Picture.all.size).to eql(count + 1)
   end
 
-  # scenario ' ' do
-  #   visit new_picture_path
-  #   fill_in 'Title', with: "Cat"
-  #   fill_in "Image URL", with: "http://placedog.com/300/400"
-  #   click_on 'Create Picture'
-  #   expect(page).to have_content('What a purr-fect picture!')
-  # end
+  scenario 'user tries to foolishly upload something not an image' do
+    count = Picture.all.size
+    path = Dir.pwd
+    visit new_picture_path
+    fill_in 'Title', with: "Cat"
+    attach_file('picture_image', "#{path}/spec/features/user_signs_up_spec.rb")
+    click_on 'Create Picture'
+    expect(page).to have_content("Error")
+    expect(Picture.all.size).to eql(count)
+  end
+
+  scenario 'user successfully uploads remote image' do
+    visit new_picture_path
+    fill_in 'Title', with: "Cat"
+    fill_in "Image URL", with: "http://placedog.com/300/400"
+    click_on 'Create Picture'
+    page.should have_css("img")
+  end
+
+  scenario 'user tries to upload garbage link' do
+    visit new_picture_path
+    fill_in 'Title', with: "Cat"
+    fill_in "Image URL", with: "fja[iojhfiasofj"
+    click_on 'Create Picture'
+    save_and_open_page
+    expect(page).to have_content("Error")
+  end
+
+  
 end
