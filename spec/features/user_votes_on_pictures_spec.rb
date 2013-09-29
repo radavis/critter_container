@@ -14,40 +14,41 @@ feature 'user votes on pictures', %Q{
   # * User can change vote from positive to negative
 
   scenario 'user upvotes a picture' do
-    picture = FactoryGirl.create(:picture)  # this doesn't exist yet, but it will
-    previous_count = picture.vote.sum
+    picture = FactoryGirl.create(:picture)
+    previous_count = picture.score
 
     visit picture_path(picture.id)
+    save_and_open_page
     click_on 'up_arrow' # upvote id tag
-    expect(picture.vote.sum).to eql(previous_count + 1)
+    expect(picture.score).to eql(previous_count + 1)
   end
 
   scenario 'user downvotes a picture' do
     picture = FactoryGirl.create(:picture)
-    previous_count = picture.vote.sum
+    previous_count = picture.score
 
     visit picture_path(picture.id)
     click_on 'down_arrow'
-    expect(picture.vote.sum).to eql(previous_count - 1)
+    expect(picture.score).to eql(previous_count - 1)
   end
 
   scenario 'user tries to vote twice' do
     picture = FactoryGirl.create(:picture)
-    previous_count = picture.vote.sum
+    previous_count = picture.score
 
     visit picture_path(picture.id)
     click_on 'up_arrow'
     click_on 'up_arrow'
-    expect(picture.vote.sum).to eql(previous_count + 1)
+    expect(picture.score).to eql(previous_count + 1)
   end
 
   scenario 'user changes their vote' do
     picture = FactoryGirl.create(:picture)
-    previous_count = picture.vote.sum
+    previous_count = picture.score
 
     visit picture_path(picture.id)
     click_on 'up_arrow'
     click_on 'down_arrow'
-    expect(picture.vote.sum).to eql(previous_count - 1)
+    expect(picture.score).to eql(previous_count - 1)
   end
 end
