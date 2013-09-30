@@ -1,6 +1,12 @@
 <p id="notice"><%= notice %></p>
 
+<<<<<<< HEAD
+=======
+<a href="" id="downvote"></a> <!-- &#x25BC; down arrow -->
+
+>>>>>>> 88ea798d2d6c3bdc0b1fc8883c090ca7af45be63
 <p>
+  <%= link_to 'upvote', vote_picture_path(@picture) %> <!-- &#x25B2; up arrow -->
   <strong>Title:</strong>
   <%= @picture.title %><br>
   <%= link_to '▲', upvote_picture_path(@picture), id: 'upvote' %>
