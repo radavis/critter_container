@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<a href="" id="up_arrow">&#x25B2;</a> <!-- up arrow -->
-<a href="" id="down_arrow">&#x25BC;</a> <!-- down arrow -->
+<a href="" id="downvote"></a> <!-- &#x25BC; down arrow -->
 
 <p>
+  <%= link_to 'upvote', vote_picture_path(@picture) %> <!-- &#x25B2; up arrow -->
   <strong>Title:</strong>
   <%= @picture.title %>
 </p>

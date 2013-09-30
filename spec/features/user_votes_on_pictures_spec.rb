@@ -18,8 +18,8 @@ feature 'user votes on pictures', %Q{
     previous_count = picture.score
 
     visit picture_path(picture.id)
-    save_and_open_page
-    click_on 'up_arrow' # upvote id tag
+    #save_and_open_page
+    click_on 'upvote' # upvote id tag
     expect(picture.score).to eql(previous_count + 1)
   end
 
@@ -28,7 +28,7 @@ feature 'user votes on pictures', %Q{
     previous_count = picture.score
 
     visit picture_path(picture.id)
-    click_on 'down_arrow'
+    click_on 'downvote'
     expect(picture.score).to eql(previous_count - 1)
   end
 
@@ -37,8 +37,8 @@ feature 'user votes on pictures', %Q{
     previous_count = picture.score
 
     visit picture_path(picture.id)
-    click_on 'up_arrow'
-    click_on 'up_arrow'
+    click_on 'upvote'
+    click_on 'upvote'
     expect(picture.score).to eql(previous_count + 1)
   end
 
@@ -47,8 +47,8 @@ feature 'user votes on pictures', %Q{
     previous_count = picture.score
 
     visit picture_path(picture.id)
-    click_on 'up_arrow'
-    click_on 'down_arrow'
+    click_on 'upvote'
+    click_on 'downvote'
     expect(picture.score).to eql(previous_count - 1)
   end
 end
