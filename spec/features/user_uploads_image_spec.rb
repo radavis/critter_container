@@ -18,7 +18,6 @@ feature 'user uploads image', %Q{
     visit new_picture_path
     expect(page).to have_content('Title')
     find_field('picture_image')
-    expect(page).to have_content('Image URL')
   end
 
   scenario 'user successfully uploads local image' do
@@ -43,22 +42,22 @@ feature 'user uploads image', %Q{
     expect(Picture.all.size).to eql(count)
   end
 
-  scenario 'user successfully uploads remote image' do
-    visit new_picture_path
-    fill_in 'Title', with: "Cat"
-    fill_in "Image URL", with: "http://placedog.com/300/400"
-    click_on 'Create Picture'
-    page.should have_css("img")
-  end
+  # scenario 'user successfully uploads remote image' do
+  #   visit new_picture_path
+  #   fill_in 'Title', with: "Cat"
+  #   fill_in "Image URL", with: "http://placedog.com/300/400"
+  #   click_on 'Create Picture'
+  #   page.should have_css("img")
+  # end
 
-  scenario 'user tries to upload garbage link' do
-    visit new_picture_path
-    fill_in 'Title', with: "Cat"
-    fill_in "Image URL", with: "fja[iojhfiasofj"
-    click_on 'Create Picture'
-    save_and_open_page
-    expect(page).to have_content("Error")
-  end
+  # scenario 'user tries to upload garbage link' do
+  #   visit new_picture_path
+  #   fill_in 'Title', with: "Cat"
+  #   fill_in "Image URL", with: "fja[iojhfiasofj"
+  #   click_on 'Create Picture'
+  #   save_and_open_page
+  #   expect(page).to have_content("Error")
+  # end
 
   
 end
