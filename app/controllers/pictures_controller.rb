@@ -1,5 +1,5 @@
 class PicturesController < ApplicationController
-  before_action :set_picture, only: [:show, :edit, :update, :destroy]
+  before_action :set_picture, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
 
   # GET /pictures
   # GET /pictures.json
@@ -61,6 +61,16 @@ class PicturesController < ApplicationController
     end
   end
 
+  def upvote
+    record_vote(1)
+    redirect_to @picture
+  end
+
+  def downvote
+    record_vote(-1)
+    redirect_to @picture
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_picture
@@ -70,5 +80,13 @@ class PicturesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
       params.require(:picture).permit(:title)
+    end
+
+    def record_vote(value)
+      if user_signed_in? 
+        vote = @picture.votes.find_or_initialize_by(user_id: current_user.id)
+        vote.value = value
+        vote.save
+      end
     end
 end

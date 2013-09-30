@@ -6,6 +6,11 @@ class Picture < ActiveRecord::Base
   validates_presence_of :title
 
   def score
-    self.votes.inject { |v, sum| v.value + sum }
+    # binding.pry
+    self.votes.inject(0) { |sum, v| sum + v.value }
+  end
+
+  def has_user_voted?(user_id)
+    self.votes.map { |vote| vote.user_id }.include?(user_id)
   end
 end

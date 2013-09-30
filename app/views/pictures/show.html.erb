@@ -1,12 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<a href="" id="up_arrow">&#x25B2;</a> <!-- up arrow -->
-<a href="" id="down_arrow">&#x25BC;</a> <!-- down arrow -->
-
 <p>
   <strong>Title:</strong>
-  <%= @picture.title %>
+  <%= @picture.title %><br>
+  <%= link_to '▲', upvote_picture_path(@picture), id: 'upvote' %>
+  <%= link_to '▼', downvote_picture_path(@picture), id: 'downvote' %>
 </p>
 
-<%= link_to 'Edit', edit_picture_path(@picture) %> |
+<%= link_to 'Edit', edit_picture_path(@picture) %> 
 <%= link_to 'Back', pictures_path %>
