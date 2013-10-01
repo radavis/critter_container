@@ -1,3 +1,17 @@
+<<<<<<< HEAD
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @picture.title %><br>
+  <%= link_to '▲', upvote_picture_path(@picture), id: 'upvote' %>
+  <%= link_to '▼', downvote_picture_path(@picture), id: 'downvote' %>
+</p>
+
+<%= link_to 'Edit', edit_picture_path(@picture) %> 
+<%= link_to 'Back', pictures_path %>
+=======
 <p>What a purr-fect picture!</p>
 
 <img src=<%= @picture.image.to_s %>>
+>>>>>>> master

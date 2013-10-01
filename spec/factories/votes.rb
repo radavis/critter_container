@@ -1,8 +1,9 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :picture do
-    title "MyCat"
+  factory :vote do
+    vote_value 1
+    voteable_id 1
+    voteable_type "MyString"
   end
 end
-
