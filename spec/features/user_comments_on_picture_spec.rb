@@ -28,5 +28,27 @@ feature 'user comments on picture', %Q{
     expect(Comment.count).to eql(previous_count + 1)
   end
 
+  scenario 'user posts comment with invalid attributes' do
+    user = FactoryGirl.create(:user)
+    picture = FactoryGirl.create(:picture)
+    previous_count = Comment.count
+
+    sign_in_as(user)
+
+    visit picture_path(picture.id)
+    click_button 'Post comment'
+
+    expect(page).to have_content('Your comment was not posted')
+    expect(Comment.count).to eql(previous_count)
+  end
+
+  scenario 'unauthenticated user posts a comment' do
+    picture = FactoryGirl.create(:picture)
+
+    visit picture_path(picture.id)
+
+    expect(page).to_not have_content('Post comment')
+    expect(page).to have_content('Sign In To Comment')
+  end
 
 end
