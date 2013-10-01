@@ -4,6 +4,8 @@ class Picture < ActiveRecord::Base
     #inverse_of: :picture,
     dependent: :destroy
 
+  has_many :comments
+
   validates_presence_of :title
   mount_uploader :image, ImageUploader
 

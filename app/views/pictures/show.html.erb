@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -10,8 +10,22 @@
 
 <%= link_to 'Edit', edit_picture_path(@picture) %> 
 <%= link_to 'Back', pictures_path %>
-=======
+
 <p>What a purr-fect picture!</p>
 
 <img src=<%= @picture.image.to_s %>>
->>>>>>> master
+
+<%= form_for [@picture, @comment] do |f| %>
+
+  <%= f.label :comment %>
+  <%= f.text_field :comment %>
+  <%= f.submit 'Post comment' %>
+
+<%- end -%>
+
+<% @picture.comments.each do |comment| %>
+  
+  <%= comment.comment %>
+
+<%- end -%>
+
