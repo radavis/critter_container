@@ -1,9 +1,11 @@
 class Picture < ActiveRecord::Base
+
   has_many :votes, as: :voteable,
     #inverse_of: :picture,
     dependent: :destroy
 
   validates_presence_of :title
+  mount_uploader :image, ImageUploader
 
   def score
     # binding.pry
@@ -13,4 +15,15 @@ class Picture < ActiveRecord::Base
   def has_user_voted?(user_id)
     self.votes.map { |vote| vote.user_id }.include?(user_id)
   end
+
+  def check_type?(data_type)
+    type = data_type.split('/')
+    if type[0] != 'image'
+      return false
+    else
+      return true
+    end
+  end
+
 end
+

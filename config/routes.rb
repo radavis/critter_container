@@ -1,4 +1,5 @@
 CritterContainer::Application.routes.draw do
+
   resources :pictures do
     member do
       get "upvote"

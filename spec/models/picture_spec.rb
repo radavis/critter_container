@@ -1,5 +1,12 @@
 require 'spec_helper'
 
 describe Picture do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  it { should have_valid(:title).when("cat") }
+  it { should_not have_valid(:title).when(nil, '') }
+
+  it 'checks the type of image' do
+    expect(Picture.new(title: 'cat').check_type?('image')).to eql(true)
+  end
+
 end

@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :picture do
-    title "MyString"
+    title "MyCat"
   end
 end
+

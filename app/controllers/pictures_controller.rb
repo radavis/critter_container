@@ -5,6 +5,7 @@ class PicturesController < ApplicationController
   # GET /pictures.json
   def index
     @pictures = Picture.all
+
   end
 
   # GET /pictures/1
@@ -21,19 +22,19 @@ class PicturesController < ApplicationController
   def edit
   end
 
-  # POST /pictures
-  # POST /pictures.json
   def create
+
     @picture = Picture.new(picture_params)
 
-    respond_to do |format|
-      if @picture.save
-        format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @picture }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @picture.errors, status: :unprocessable_entity }
-      end
+    # params[:picture][:image].content_type
+    data_type = picture_params[:image].headers.split(' ')[5]
+
+    if @picture.check_type?(data_type)
+      @picture.save
+        redirect_to picture_path(@picture),
+          notice: "What a purr-fect picture!"
+    else
+      redirect_to new_picture_path, notice: "Error"
     end
   end
 
@@ -79,7 +80,7 @@ class PicturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
-      params.require(:picture).permit(:title)
+      params.require(:picture).permit(:title, :image)
     end
 
     def record_vote(value)

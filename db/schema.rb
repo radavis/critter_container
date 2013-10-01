@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20130929195743) do
 
   create_table "pictures", force: true do |t|
     t.string   "title",      null: false
+    t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
