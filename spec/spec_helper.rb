@@ -51,8 +51,9 @@ RSpec.configure do |config|
 
       # We think the error is occuring here, but we don't know how to fix it
 
-      FileUtils.rm_rf(Dir["#{Rails.root}/public/upload/[^.]*"])
-      # FileUtils.rm_rf(Dir["#{temp_path}/[^.]*"])
+     
+      FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads/picture/image/[^.]*"])
+      FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads/tmp/[^.]*"])
     end
   end
 
