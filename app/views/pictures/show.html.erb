@@ -31,8 +31,11 @@
 <%- end -%>
 
 <% @picture.comments.each do |comment| %>
-
+  <div class='comment'>
   <%= comment.comment %>
-
+  
+  <%= link_to '▲', upvote_picture_comment_path(@picture, comment.id), id: 'comment_upvote' %>
+  <%= link_to '▼', downvote_picture_comment_path(@picture, @comment.id), id: 'comment_downvote' %>
+  </div>
 <%- end -%>
 
