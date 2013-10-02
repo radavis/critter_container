@@ -6,6 +6,7 @@ require 'rspec/autorun'
 require 'capybara'
 
 
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
@@ -43,4 +44,18 @@ RSpec.configure do |config|
   config.order = "random"
 
   config.include SignInHelper
+  
+  config.after(:all) do
+    # Get rid of the linked images
+    if Rails.env.test? || Rails.env.cucumber?
+
+      # We think the error is occuring here, but we don't know how to fix it
+
+     
+      FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads/picture/image/[^.]*"])
+      FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads/tmp/[^.]*"])
+    end
+  end
+
+
 end

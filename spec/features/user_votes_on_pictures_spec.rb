@@ -19,7 +19,7 @@ feature 'user votes on pictures', %Q{
     previous_count = picture.score
 
     sign_in_as(user)
-
+ 
     visit picture_path(picture.id)
     click_on 'upvote' # upvote id tag
 
