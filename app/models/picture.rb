@@ -7,6 +7,16 @@ class Picture < ActiveRecord::Base
   validates_presence_of :title
   mount_uploader :image, ImageUploader
 
+  state_machine initial: :pending do
+    event :approve do
+      transition pending: :approved
+    end
+
+    event :reject do
+      transition pending: :rejected
+    end
+  end 
+
   def score
     # binding.pry
     self.votes.inject(0) { |sum, v| sum + v.value }
