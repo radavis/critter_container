@@ -66,15 +66,25 @@ class PicturesController < ApplicationController
 
   def upvote
     record_vote(1)
+    set_state
     redirect_to @picture
   end
 
   def downvote
     record_vote(-1)
+    set_state
     redirect_to @picture
   end
 
   private
+    def set_state
+      if @picture.score == 2
+        @picture.approve
+      elsif @picture.score == -2
+        @picture.reject
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_picture
       @picture = Picture.find(params[:id])
