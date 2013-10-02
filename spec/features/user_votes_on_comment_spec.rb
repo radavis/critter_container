@@ -22,48 +22,53 @@ feature 'user votes on comments', %Q{
     sign_in_as(user)
  
     visit picture_path(picture.id)
-    click_on 'comment_upvote' 
+    click_on 'comment_upvote_#{comment.id}' 
 
     expect(comment.reload.score).to eql(previous_count + 1)
   end
 
-  # scenario 'user downvotes a picture' do
-  #   user = FactoryGirl.create(:user)
-  #   picture = FactoryGirl.create(:picture)
-  #   previous_count = picture.score
+  scenario 'user downvotes a comment' do
+    user = FactoryGirl.create(:user)
+    picture = FactoryGirl.create(:picture)
+    comment = FactoryGirl.create(:comment, picture_id: picture.id, user_id: user.id)
+    previous_count = comment.score
 
-  #   sign_in_as(user)
+    sign_in_as(user)
+ 
+    visit picture_path(picture.id)
+    
+    click_on 'comment_downvote_#{comment.id}' 
 
-  #   visit picture_path(picture.id)
-  #   click_on 'downvote'
-  #   expect(picture.reload.score).to eql(previous_count - 1)
-  # end
+    expect(comment.reload.score).to eql(previous_count - 1)
+  end
 
-  # scenario 'user tries to vote twice' do
-  #   user = FactoryGirl.create(:user)
-  #   picture = FactoryGirl.create(:picture)
-  #   previous_count = picture.score
+   scenario 'user tries to vote twice on a comment' do
+    user = FactoryGirl.create(:user)
+    picture = FactoryGirl.create(:picture)
+    comment = FactoryGirl.create(:comment, picture_id: picture.id, user_id: user.id)
+    previous_count = comment.score
 
-  #   sign_in_as(user)
+    sign_in_as(user)
 
-  #   visit picture_path(picture.id)
-  #   click_on 'upvote'
-  #   click_on 'upvote'
-  #   expect(picture.reload.score).to eql(previous_count + 1)
-  # end
+    visit picture_path(picture.id)
+    click_on 'comment_downvote_#{comment.id}' 
+    click_on 'comment_downvote_#{comment.id}' 
+    expect(comment.reload.score).to eql(previous_count - 1)
+  end
 
-  # scenario 'user changes their vote' do
-  #   user = FactoryGirl.create(:user)
-  #   picture = FactoryGirl.create(:picture)
-  #   previous_count = picture.score
+   scenario 'user changes their vote' do
+     user = FactoryGirl.create(:user)
+    picture = FactoryGirl.create(:picture)
+    comment = FactoryGirl.create(:comment, picture_id: picture.id, user_id: user.id)
+    previous_count = comment.score
 
-  #   sign_in_as(user)
+    sign_in_as(user)
 
-  #   visit picture_path(picture.id)
-  #   click_on 'upvote'
-  #   click_on 'downvote'
-  #   expect(picture.reload.score).to eql(previous_count - 1)
-  # end
+    visit picture_path(picture.id)
+    click_on 'comment_downvote_#{comment.id}' 
+    click_on 'comment_upvote_#{comment.id}' 
+    expect(comment.reload.score).to eql(previous_count + 1)
+  end
 
 end
 
