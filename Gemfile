@@ -50,6 +50,7 @@ gem 'ransack'
 gem 'simple_form'
 gem 'state_machine'
 gem 'stringex'
+gem 'fog'
 
 
 group :test, :development do
