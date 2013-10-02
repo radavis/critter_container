@@ -1,10 +1,14 @@
 class Picture < ActiveRecord::Base
 
   has_many :votes, as: :voteable,
-    #inverse_of: :picture,
+    # inverse_of: :picture,
     dependent: :destroy
 
+  has_many :comments,
+    inverse_of: :picture
+
   validates_presence_of :title
+  validates_presence_of :image
   mount_uploader :image, ImageUploader
 
   state_machine initial: :pending do
@@ -18,7 +22,6 @@ class Picture < ActiveRecord::Base
   end 
 
   def score
-    # binding.pry
     self.votes.inject(0) { |sum, v| sum + v.value }
   end
 

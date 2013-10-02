@@ -1,6 +1,7 @@
 CritterContainer::Application.routes.draw do
 
   resources :pictures do
+    resources :comments
     member do
       get "upvote"
       get "downvote"
