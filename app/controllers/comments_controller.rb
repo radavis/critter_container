@@ -19,7 +19,6 @@ class CommentsController < ApplicationController
   end
 
   def new
-    binding.pry
     @comment = Comment.new
     @picture = Picture.find(params[:picture_id])
   end

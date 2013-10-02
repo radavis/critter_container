@@ -9,7 +9,9 @@ class Comment < ActiveRecord::Base
   validates_presence_of :user_id
   validates_presence_of :picture_id
 
-  belongs_to :user
+  belongs_to :user,
+    inverse_of: :comments
 
-  belongs_to :picture
+  belongs_to :picture,
+    inverse_of: :comments
 end

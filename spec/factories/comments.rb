@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :comment do
+    comment 'My cat is awesome'
   end
 end
