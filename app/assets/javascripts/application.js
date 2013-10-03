@@ -9,7 +9,11 @@
 //
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
-//
+
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require_tree .
+var comment_toggle = function(id){
+  $( "#comment_"+id ).slideToggle( 50, function() {} );
+}

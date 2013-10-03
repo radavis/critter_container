@@ -1,27 +1,44 @@
 <h1>Listing pictures</h1>
+<% @pictures.each do |picture| %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+    <div class="col-sm-8 col-md-8 col-xs-4">
+      
+      <div class="thumbnail">
+       
+          <img href='<%= picture_path(picture)%>' src=<%= picture.image.to_s %>>  
+      
+        <div class="caption">
+          <h3><%= picture.title %></h3>
+            <p>
+            <%= link_to '▲', upvote_picture_path(picture), class:'btn btn-primary', id: 'upvote' %>
+            <%= link_to '▼', downvote_picture_path(picture), class:'btn btn-default', id: 'downvote' %>
+            <% if user_signed_in? %>
+              <a style='float:right'class='btn btn-primary' onclick='comment_toggle(<%=picture.id%>);'> Comment </a>
+                <div class='commentForm' id="comment_<%=picture.id%>">
+                <%= form_for [picture, @comment] do |f| %>
+                  <%= f.label :comment %>
+                  <%= f.text_field :comment %>
+                  <%= f.submit 'Post comment' %>
+                <%- end -%>
+              </div>
+            <%- end -%>
+            </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-4 col-xs-8">
+    <% picture.comments.each do |comment| %>
+      <div class='comment'>
+      <%= comment.comment %>
+      <%= link_to '▲', upvote_picture_comment_path(picture, comment.id),
+      id: 'comment_upvote_#{comment.id}' %>
+      <%= link_to '▼', downvote_picture_comment_path(picture, comment.id), id: 'comment_downvote_#{comment.id}'%>
+  </div>
+<%- end -%>
+    </div>
 
-  <tbody>
-    <% @pictures.each do |picture| %>
-      <tr>
-        <td><%= picture.title %></td>
-        <td><%= link_to 'Show', picture %></td>
-        <td><%= link_to 'Edit', edit_picture_path(picture) %></td>
-        <td><%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
 
-<%= link_to 'New Picture', new_picture_path %>
+<% end %>
+
+

@@ -11,3 +11,8 @@
  *= require_self
  *= require_tree .
  */
+@import "twitter/bootstrap";
+.wrapper{
+  width:960px;
+  margin:auto;
+}
