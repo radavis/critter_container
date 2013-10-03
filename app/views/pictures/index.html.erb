@@ -1,5 +1,12 @@
 
-<% @pictures.each_with_index do |picture, index| %>
+<%= search_form_for @q do |f| %>
+  <%= f.label :title_cont %>
+  <%= f.text_field :title_cont %>
+  <%= f.submit 'Search' %>
+<% end %>
+
+
+<% @pictures_all.each_with_index do |picture, index| %>
   <% if index.even? %>
     <div style='float:left'class="cont col-sm-8 col-md-8 col-xs-8">
       <div class="thumbnail">
