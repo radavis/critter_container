@@ -4,8 +4,13 @@ class PicturesController < ApplicationController
   # GET /pictures
   # GET /pictures.json
   def index
+
+    @pictures_all = Picture.all
+    @comment = Comment.new 
+
     @q = Picture.search(params[:q])
     @pictures = @q.result(distinct: true)
+
   end
 
   # GET /pictures/1
