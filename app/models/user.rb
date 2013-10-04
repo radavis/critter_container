@@ -10,6 +10,10 @@ class User < ActiveRecord::Base
   has_many :comments,
     inverse_of: :user
 
+  has_many :picture,
+    inverse_of: :user,
+    dependent: :destroy
+
   validates_presence_of :username
   validates_presence_of :email
 

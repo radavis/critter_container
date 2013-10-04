@@ -1,4 +1,5 @@
 class Picture < ActiveRecord::Base
+  belongs_to :user
 
   has_many :votes, as: :voteable,
     # inverse_of: :picture,
@@ -19,7 +20,7 @@ class Picture < ActiveRecord::Base
     event :reject do
       transition pending: :rejected
     end
-  end 
+  end
 
   def score
     self.votes.inject(0) { |sum, v| sum + v.value }
