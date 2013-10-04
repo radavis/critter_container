@@ -21,6 +21,8 @@ feature 'user uploads image', %Q{
   end
 
   scenario 'user successfully uploads local image' do
+    user = FactoryGirl.create(:user)
+    sign_in_as(user)
     path = Dir.pwd
     count = Picture.all.size
     visit new_picture_path
@@ -32,6 +34,8 @@ feature 'user uploads image', %Q{
   end
 
   scenario 'user tries to foolishly upload something not an image' do
+    user = FactoryGirl.create(:user)
+    sign_in_as(user)
     count = Picture.all.size
     path = Dir.pwd
     visit new_picture_path

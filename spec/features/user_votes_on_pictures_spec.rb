@@ -20,7 +20,7 @@ feature 'user votes on pictures', %Q{
 
     sign_in_as(user)
  
-    visit picture_path(picture.id)
+    visit picture_path(picture)
     click_on 'upvote' # upvote id tag
 
     expect(picture.reload.score).to eql(previous_count + 1)
@@ -33,7 +33,7 @@ feature 'user votes on pictures', %Q{
 
     sign_in_as(user)
 
-    visit picture_path(picture.id)
+    visit picture_path(picture)
     click_on 'downvote'
     expect(picture.reload.score).to eql(previous_count - 1)
   end
@@ -45,7 +45,7 @@ feature 'user votes on pictures', %Q{
 
     sign_in_as(user)
 
-    visit picture_path(picture.id)
+    visit picture_path(picture)
     click_on 'upvote'
     click_on 'upvote'
     expect(picture.reload.score).to eql(previous_count + 1)
@@ -58,7 +58,7 @@ feature 'user votes on pictures', %Q{
 
     sign_in_as(user)
 
-    visit picture_path(picture.id)
+    visit picture_path(picture)
     click_on 'upvote'
     click_on 'downvote'
     expect(picture.reload.score).to eql(previous_count - 1)

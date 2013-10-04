@@ -8,7 +8,7 @@ feature 'searching picture'  do
     picture2 = FactoryGirl.create(:picture, title: 'MyDog')
 
     visit pictures_path
-    fill_in 'Title contains', with: 'Dog'
+    fill_in 'Search', with: 'Dog'
     click_on 'Search'
 
     expect(page).to have_content('MyDog')
