@@ -1,37 +1,22 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
 
-  # GET /pictures
-  # GET /pictures.json
   def index
     @q = Picture.search(params[:q])
     @pictures = @q.result(distinct: true)
   end
 
-  # GET /pictures/1
-  # GET /pictures/1.json
   def show
-    @picture = Picture.find_by_url!(params[:id])
-    #if id is numeric, use find
-    #else use find_by_url
-    # Picture.all.each do |picture|
-    #   if picture.id.class == String
-        
-    #   else 
-    #     @picture = Picture.find(params[:id])
-    #   end
-    # end
 
-    # @picture = Picture.find_by_url(params[:id])
+    @picture = Picture.find_by_url(params[:id])
+    
     @comment = Comment.new 
   end
 
-  # GET /pictures/new
   def new
     @picture = Picture.new
   end
 
-  # GET /pictures/1/edit
   def edit
   end
 
@@ -39,11 +24,10 @@ class PicturesController < ApplicationController
     @picture = Picture.new(picture_params)
     @picture.user_id = current_user.id
 
-    # params[:picture][:image].content_type
     data_type = picture_params[:image].headers.split(' ')[5]
 
-    if @picture.check_type?(data_type)
-      @picture.save
+
+    if @picture.save
         redirect_to picture_path(@picture),
           notice: "What a purr-fect picture!"
     else
@@ -51,8 +35,6 @@ class PicturesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /pictures/1
-  # PATCH/PUT /pictures/1.json
   def update
     respond_to do |format|
       if @picture.update(picture_params)
@@ -65,8 +47,6 @@ class PicturesController < ApplicationController
     end
   end
 
-  # DELETE /pictures/1
-  # DELETE /pictures/1.json
   def destroy
     @picture.destroy
     respond_to do |format|
@@ -96,12 +76,10 @@ class PicturesController < ApplicationController
       end
     end
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_picture
       @picture = Picture.find_by_url(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
       params.require(:picture).permit(:title, :image, :user_id)
     end
