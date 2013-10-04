@@ -11,7 +11,7 @@ class PicturesController < ApplicationController
   # GET /pictures/1
   # GET /pictures/1.json
   def show
-    @picture = Picture.find(params[:id])
+    @picture = Picture.find_by_url(params[:id])
     @comment = Comment.new 
   end
 
@@ -87,7 +87,7 @@ class PicturesController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_picture
-      @picture = Picture.find(params[:id])
+      @picture = Picture.find_by_url(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

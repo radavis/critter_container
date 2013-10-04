@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
 
   
   def index
-    @picture = Picture.find(params[:picture_id])
+    @picture = Picture.(params[:picture_id])
     @comment = @picture.comments
   end
 
