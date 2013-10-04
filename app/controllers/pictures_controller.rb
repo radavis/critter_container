@@ -11,7 +11,18 @@ class PicturesController < ApplicationController
   # GET /pictures/1
   # GET /pictures/1.json
   def show
-    @picture = Picture.find_by_url(params[:id])
+    @picture = Picture.find_by_url!(params[:id])
+    #if id is numeric, use find
+    #else use find_by_url
+    # Picture.all.each do |picture|
+    #   if picture.id.class == String
+        
+    #   else 
+    #     @picture = Picture.find(params[:id])
+    #   end
+    # end
+
+    # @picture = Picture.find_by_url(params[:id])
     @comment = Comment.new 
   end
 
@@ -25,8 +36,8 @@ class PicturesController < ApplicationController
   end
 
   def create
-
     @picture = Picture.new(picture_params)
+    @picture.user_id = current_user.id
 
     # params[:picture][:image].content_type
     data_type = picture_params[:image].headers.split(' ')[5]
@@ -92,7 +103,7 @@ class PicturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
-      params.require(:picture).permit(:title, :image)
+      params.require(:picture).permit(:title, :image, :user_id)
     end
 
     def record_vote(value)

@@ -25,11 +25,12 @@ ActiveRecord::Schema.define(version: 20131004145546) do
   end
 
   create_table "pictures", force: true do |t|
-    t.string   "title",      null: false
+    t.string   "title",                          null: false
     t.string   "image"
+    t.integer  "user_id",                        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "state",      null: false
+    t.string   "state",      default: "pending", null: false
     t.string   "url"
   end
 

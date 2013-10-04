@@ -1,5 +1,6 @@
 class Picture < ActiveRecord::Base
-
+  belongs_to :user
+  
   has_many :votes, as: :voteable,
     # inverse_of: :picture,
     dependent: :destroy
@@ -9,6 +10,8 @@ class Picture < ActiveRecord::Base
 
   acts_as_url :title
 
+  validates_uniqueness_of :user_id
+  validates_presence_of :user_id
   validates_presence_of :title
   validates_presence_of :image
   mount_uploader :image, ImageUploader

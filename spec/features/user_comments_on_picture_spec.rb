@@ -19,7 +19,7 @@ feature 'user comments on picture', %Q{
 
     sign_in_as(user)
 
-    visit picture_path(picture.id)
+    visit picture_path(picture)
     fill_in 'Comment', with: 'My cat is fat'
     click_button 'Post comment'
 
@@ -35,7 +35,7 @@ feature 'user comments on picture', %Q{
 
     sign_in_as(user)
 
-    visit picture_path(picture.id)
+    visit picture_path(picture)
     click_button 'Post comment'
 
     expect(page).to have_content('Your comment was not posted')
@@ -45,7 +45,7 @@ feature 'user comments on picture', %Q{
   scenario 'unauthenticated user posts a comment' do
     picture = FactoryGirl.create(:picture)
 
-    visit picture_path(picture.id)
+    visit picture_path(picture)
 
     expect(page).to_not have_content('Post comment')
     expect(page).to have_content('Sign In To Comment')

@@ -1,5 +1,5 @@
 <%= search_form_for @q do |f| %>
-  <%= f.label :title_cont %>
+  <%= f.label :title_cont, 'Search' %>
   <%= f.text_field :title_cont %>
   <%= f.submit 'Search' %>
 <% end %>
@@ -20,7 +20,7 @@
     <% @pictures.each do |picture| %>
       <tr>
         <td><%= picture.title %></td>
-        <td><%= link_to 'Show', picture %></td>
+        <td><%= link_to 'Show', picture, id: "picture-#{picture.id}" %></td>
         <td><%= link_to 'Edit', edit_picture_path(picture) %></td>
         <td><%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
