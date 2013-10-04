@@ -1,9 +1,10 @@
-
+<div class = 'col-md-4 '>
 <%= simple_form_for @picture, :html => {:multipart => true} do |f| %>
 
-<%= f.file_field :image %>
-<%= f.input :title %>
-<%= f.button :submit %>
+  <%= f.file_field :image %>
+  <%= f.input :title %>
+  <%= f.button :submit %>
                  
 <% end %>
 
+</div>
