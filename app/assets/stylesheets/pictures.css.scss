@@ -1,3 +1,32 @@
 // Place all the styles related to the pictures controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.commentForm{
+display:none;
+}
+
+.wrapper{
+  width:95%;
+  max-width:1100px;
+  margin:auto;
+}
+.border{
+  height:1px;
+  width:100%;
+  padding:0px 0px;
+  background-color:#cccccc;  
+}
+.thumbnail{
+}
+.cont{
+  margin-top: 15px;
+}
+#comment_comment{
+  width:75%;
+  padding:75px 0px;
+  margin:auto;
+}
+.floated{
+  width:75%;
+  margin:5px auto;
+}

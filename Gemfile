@@ -21,6 +21,8 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
+                              :github => 'anjlab/bootstrap-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
@@ -51,7 +53,6 @@ gem 'simple_form'
 gem 'state_machine'
 gem 'stringex'
 
-
 group :test, :development do
   gem 'capybara'
   #gem 'factory_girl'
@@ -63,5 +64,3 @@ group :test, :development do
   gem 'shoulda-matchers'
   gem 'valid_attribute'
 end
-
-

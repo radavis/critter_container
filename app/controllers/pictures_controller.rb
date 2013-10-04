@@ -2,8 +2,13 @@ class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
 
   def index
+
+    @pictures_all = Picture.all
+    @comment = Comment.new 
+
     @q = Picture.search(params[:q])
     @pictures = @q.result(distinct: true)
+
   end
 
   def show

@@ -6,6 +6,6 @@ class Vote < ActiveRecord::Base
     inverse_of: :votes
 
   validates :user_id, uniqueness:{ scope: [:voteable_id, :voteable_type] }
-
+  
   validates_inclusion_of :value, in: [-1, 1]
 end
