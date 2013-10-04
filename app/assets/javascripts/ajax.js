@@ -20,4 +20,26 @@ var submit_pic_upvote = function(id){
     });
   return false;
   }
+  var comment_upvote = function(id, comment_id){
+   $.ajax({
+      type: "GET",
+      url: '/pictures/' + id + '/comments/'+ comment_id + '/upvote.json',
+      dataType: 'json',
+      success: function(msg) {
+       alert('upvoted')
+      }
+    });
+  return false;
+  }
+  var comment_downvote = function(id, comment_id){
+   $.ajax({
+      type: "GET",
+      url: '/pictures/' + id + '/comments/' + comment_id + '/downvote.json',
+      dataType: 'json',
+      success: function(msg) {
+       alert('downvoted')
+      }
+    });
+  return false;
+  }
 

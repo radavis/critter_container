@@ -14,8 +14,6 @@
         <div class="caption">
           <h3><%= picture.title %></h3>
             <p>
-          <!--   <%= link_to '▲', upvote_picture_path(picture), class:'btn btn-primary', id: 'upvote' %>
-            <%= link_to '▼', downvote_picture_path(picture), class:'btn btn-default', id: 'downvote' %> -->
             <a class= 'btn btn-primary' href='#' 
             onclick='submit_pic_upvote(<%= picture.id %>)' id='upvote'>▲</a>
             <a class= 'btn btn-primary' href='#' 
@@ -37,8 +35,6 @@
     <div class="cont col-sm-4 col-md-4 col-xs-4">
       <h2> Comments </h2>
       <ul class="list-group">
-
-
     <% picture.comments.each do |comment| %>
        <li class="list-group-item">
         <p style='float:left'>
@@ -46,9 +42,11 @@
         </p>
         <div class='float_right'>      
           <%= comment.user.username %>
-          <%= link_to '▲', upvote_picture_comment_path(picture, comment.id),
-          id: 'comment_upvote_#{comment.id}' %>
-          <%= link_to '▼', downvote_picture_comment_path(picture, comment.id), id: 'comment_downvote_#{comment.id}'%>
+         <a class= 'btn btn-primary' href='#' 
+            onclick='comment_upvote(<%= picture.id %>, <%=comment.id %>)' id='comment_upvote_#{comment.id}'>▲</a>
+            <a class= 'btn btn-primary' href='#' 
+            onclick='comment_downvote(<%= picture.id %>, <%=comment.id %>)' id='comment_downvote_#{comment.id}'>▼
+          </a>
         </div>
         <div style='clear:both'></div>
         </li>
@@ -67,10 +65,13 @@
           </p>
 
           <div class='float_right'>      
-            <%= comment.user.username %>
-            <%= link_to '▲', upvote_picture_comment_path(picture, comment.id),
-            id: 'comment_upvote_#{comment.id}' %>
-            <%= link_to '▼', downvote_picture_comment_path(picture, comment.id), id: 'comment_downvote_#{comment.id}'%>
+          <%= comment.user.username %>
+
+            <a class= 'btn btn-primary' href='#' 
+            onclick='comment_upvote(<%= picture.id %>, <%=comment.id %>)' id='comment_upvote_#{comment.id}'>▲</a>
+            <a class= 'btn btn-primary' href='#' 
+            onclick='comment_downvote(<%= picture.id %>, <%=comment.id %>)' id='comment_downvote_#{comment.id}'>▼
+          </a>
           </div>
         <div style='clear:both'></div>
         </li>
