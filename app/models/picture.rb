@@ -1,4 +1,5 @@
 class Picture < ActiveRecord::Base
+  belongs_to :user
 
   has_many :votes, as: :voteable,
     # inverse_of: :picture,
@@ -7,6 +8,10 @@ class Picture < ActiveRecord::Base
   has_many :comments,
     inverse_of: :picture
 
+  acts_as_url :title
+
+
+  validates_presence_of :user_id
   validates_presence_of :title
   validates_presence_of :image
   mount_uploader :image, ImageUploader
@@ -20,6 +25,10 @@ class Picture < ActiveRecord::Base
       transition pending: :rejected
     end
   end 
+
+  def to_param
+    url
+  end
 
   def score
     self.votes.inject(0) { |sum, v| sum + v.value }

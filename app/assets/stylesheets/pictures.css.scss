@@ -1,6 +1,6 @@
-// Place all the styles related to the pictures controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$purple_one: #25064D;
+
+
 .commentForm{
 display:none;
 }
@@ -10,7 +10,10 @@ display:none;
 }
 .wrapper{
   width:95%;
+
   max-width:1500px;
+
+
   margin:auto;
 }
 .border{
@@ -25,14 +28,20 @@ display:none;
   margin-top: 15px;
 }
 #comment_comment{
-  width:75%;
-  padding:75px 0px;
+  width:70%;
+  padding:0px 0px 50px 0px;
   margin:auto;
 }
 .floated{
   width:75%;
   margin:5px auto;
 }
+
 .float_right{
   float:right;
+}
+
+.picture-title{
+  position: relative;
+  width:75%;
 }

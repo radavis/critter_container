@@ -2,8 +2,9 @@
 
 FactoryGirl.define do
   factory :picture do
-    title "MyCat"
+    title "mycat"
     image Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'features', 'helveticat.jpg'))
+    user
   end
 end
 

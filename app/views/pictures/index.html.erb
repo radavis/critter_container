@@ -1,10 +1,14 @@
 
 <%= search_form_for @q do |f| %>
+
  
   <%= f.text_field :title_cont, class:'col-md-4 input-lg' %>
   <%= f.submit 'Search', class:'col-md-1 this_button btn btn-primary' %>
 <% end %>
 <div style='clear:both;'></div>
+
+ 
+
 <% @pictures.each_with_index do |picture, index| %>
   <% if index.even? %>
     <div style='float:left'class="cont col-sm-8 col-md-8 col-xs-8">
@@ -95,7 +99,10 @@
                 <div class='commentForm' id="comment_<%=picture.id%>">
                 <%= form_for [picture, @comment] do |f| %>
                   <%= f.text_field :comment %>
-                   <%= f.submit 'Post comment', class:'btn btn-primary' %>
+
+
+                  <%= f.submit 'Post comment', :class=>"floated btn btn-default", type:"button" %>
+
                 <%- end -%>
               </div>
             <%- end -%>
@@ -111,5 +118,4 @@
 <div class='border'></div>
 
 <% end %>
-
 

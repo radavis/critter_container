@@ -21,7 +21,7 @@ feature 'user votes on comments', %Q{
 
     sign_in_as(user)
  
-    visit picture_path(picture.id)
+    visit picture_path(picture)
     click_on 'comment_upvote_#{comment.id}' 
 
     expect(comment.reload.score).to eql(previous_count + 1)
@@ -35,7 +35,7 @@ feature 'user votes on comments', %Q{
 
     sign_in_as(user)
  
-    visit picture_path(picture.id)
+    visit picture_path(picture)
     
     click_on 'comment_downvote_#{comment.id}' 
 
@@ -50,7 +50,7 @@ feature 'user votes on comments', %Q{
 
     sign_in_as(user)
 
-    visit picture_path(picture.id)
+    visit picture_path(picture)
     click_on 'comment_downvote_#{comment.id}' 
     click_on 'comment_downvote_#{comment.id}' 
     expect(comment.reload.score).to eql(previous_count - 1)
@@ -64,7 +64,7 @@ feature 'user votes on comments', %Q{
 
     sign_in_as(user)
 
-    visit picture_path(picture.id)
+    visit picture_path(picture)
     click_on 'comment_downvote_#{comment.id}' 
     click_on 'comment_upvote_#{comment.id}' 
     expect(comment.reload.score).to eql(previous_count + 1)

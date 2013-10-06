@@ -2,12 +2,12 @@ class CommentsController < ApplicationController
 
   
   def index
-    @picture = Picture.find(params[:picture_id])
+    @picture = Picture.(params[:picture_id])
     @comment = @picture.comments
   end
 
   def create
-    @picture = Picture.find(params[:picture_id])
+    @picture = Picture.find_by_url!(params[:picture_id])
     @comment = @picture.comments.build(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
@@ -21,18 +21,18 @@ class CommentsController < ApplicationController
 
   def new
     @comment = Comment.new
-    @picture = Picture.find(params[:picture_id])
+    @picture = Picture.find_by_url!(params[:picture_id])
   end
 
   def upvote
-    @picture = Picture.find(params[:picture_id])
+    @picture = Picture.find_by_url!(params[:picture_id])
 
     record_vote(1)
     redirect_to @picture
   end
 
   def downvote
-    @picture = Picture.find(params[:picture_id])
+    @picture = Picture.find_by_url!(params[:picture_id])
     record_vote(-1)
     redirect_to @picture
   end
