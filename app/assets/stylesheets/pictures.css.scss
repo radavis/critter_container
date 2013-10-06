@@ -4,10 +4,18 @@ $purple_one: #25064D;
 .commentForm{
 display:none;
 }
+.this_button{
+  margin-left:5px;
+  margin-top:5px;
+
+}
 
 .wrapper{
   width:95%;
-  max-width:800px;
+
+  max-width:1500px;
+
+
   margin:auto;
 }
 .border{
@@ -30,7 +38,15 @@ display:none;
   width:75%;
   margin:5px auto;
 }
+
+.float_right{
+  float:right;
+}
+
 .picture-title{
   position: relative;
   width:75%;
+}
+.cat_icon{
+  background-image:url(/icons/cat_jump.svg);
 }

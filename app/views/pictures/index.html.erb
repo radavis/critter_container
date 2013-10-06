@@ -1,9 +1,16 @@
+<div class="jumbotron">
+  <div class="container">
+    <h3>Search</h3> 
+    <%= search_form_for @q do |f| %> 
+      <%= f.text_field :title_cont, class:'col-md-6 input-lg'%>
+      <p><%= f.submit 'Search', class:'col-md-1 this_button btn btn-primary' %></p>
+    <% end %>
+    <div class='cat_icon'></div>
+    <div style='clear:both;'></div>
+  </div>
+</div>
 
-<%= search_form_for @q do |f| %>
-  <%= f.label :title_cont, 'Search' %>
-  <%= f.text_field :title_cont %>
-  <%= f.submit 'Search' %>
-<% end %>
+
 
 <% @pictures.each_with_index do |picture, index| %>
   <% if index.even? %>
@@ -26,7 +33,7 @@
                 <%= form_for [picture, @comment] do |f| %>
                 
                   <%= f.text_field :comment %>
-                  <%= f.submit 'Post comment', :class=>"floated btn btn-default", type:"button" %>
+                  <%= f.submit 'Post comment', class:'btn btn-primary' %>
                 <%- end -%>
               </div>
             <%- end -%>
@@ -35,28 +42,48 @@
       </div>
     </div>
     <div class="cont col-sm-4 col-md-4 col-xs-4">
+      <h2> Comments </h2>
+      <ul class="list-group">
+
+
     <% picture.comments.each do |comment| %>
-        <div class='comment'>
-        <%= comment.comment %>
-        <%= link_to '▲', upvote_picture_comment_path(picture, comment.id),
-        id: 'comment_upvote_#{comment.id}' %>
-        <%= link_to '▼', downvote_picture_comment_path(picture, comment.id), id: 'comment_downvote_#{comment.id}'%>
-         
+       <li class="list-group-item">
+        <p style='float:left'>
+         <%= comment.comment %>
+        </p>
+        <div class='float_right'>      
+          <%= comment.user.username %>
+          <%= link_to '▲', upvote_picture_comment_path(picture, comment.id),
+          id: 'comment_upvote_#{comment.id}' %>
+          <%= link_to '▼', downvote_picture_comment_path(picture, comment.id), id: 'comment_downvote_#{comment.id}'%>
         </div>
+        <div style='clear:both'></div>
+        </li>
+      
     <%- end -%>
-    
+    </ul>
     </div>
 <% else %>
  <div style='float:left'class="cont col-sm-4 col-md-4 col-xs-4">
+  <h2> Comments </h2>
+   <ul class="list-group">
     <% picture.comments.each do |comment| %>
-        <div class='comment'>
-        <%= comment.comment %>
-        <%= link_to '▲', upvote_picture_comment_path(picture, comment.id),
-        id: 'comment_upvote_#{comment.id}' %>
-        <%= link_to '▼', downvote_picture_comment_path(picture, comment.id), id: 'comment_downvote_#{comment.id}'%>
-        </div>
+        <li class="list-group-item">
+          <p style='float:left'>
+            <%= comment.comment %>
+          </p>
+
+          <div class='float_right'>      
+            <%= comment.user.username %>
+            <%= link_to '▲', upvote_picture_comment_path(picture, comment.id),
+            id: 'comment_upvote_#{comment.id}' %>
+            <%= link_to '▼', downvote_picture_comment_path(picture, comment.id), id: 'comment_downvote_#{comment.id}'%>
+          </div>
+        <div style='clear:both'></div>
+        </li>
+        
     <%- end -%>
-    
+    </ul>
     </div>
   <div style='float:right;' class=" cont col-sm-8 col-md-8 col-xs-8">  
       <div class="thumbnail">
@@ -75,7 +102,10 @@
                 <div class='commentForm' id="comment_<%=picture.id%>">
                 <%= form_for [picture, @comment] do |f| %>
                   <%= f.text_field :comment %>
+
+
                   <%= f.submit 'Post comment', :class=>"floated btn btn-default", type:"button" %>
+
                 <%- end -%>
               </div>
             <%- end -%>
