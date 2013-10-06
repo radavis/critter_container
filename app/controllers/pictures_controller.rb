@@ -3,7 +3,6 @@ class PicturesController < ApplicationController
 
   def index
 
-    @pictures_all = Picture.all
     @comment = Comment.new 
 
     @q = Picture.search(params[:q])
