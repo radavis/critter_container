@@ -1,33 +1,35 @@
+
+
 <p id="notice"><%= notice %></p>
+<div class="jumbotron">
+    <div class="container">
+      <h1>   <%= @picture.title %>
+      <%= link_to '▲', upvote_picture_path(@picture), id: 'upvote' %>
+       <%= link_to '▼', downvote_picture_path(@picture), id: 'downvote' %>
+      </h1>
+      <p>  
+        <%= link_to 'Edit', edit_picture_path(@picture), :class => "btn btn-primary btn-sm" %> 
+        <%= link_to 'Back', pictures_path, :class => "btn btn-primary btn-sm" %><br>
+      </p>
+    </div>
+</div>
+  
+  <p><strong>What a purr-fect picture!</strong></p>
+<div class="container">
+  <div class='col-md-8'>
+    <img src=<%= @picture.image.to_s %>>
+    <% if user_signed_in? %>
+        <%= form_for [@picture, @comment] do |f| %>
 
-<p>
-  <strong>Title:   <%= @picture.title %></strong>
-  <%= link_to '▲', upvote_picture_path(@picture), id: 'upvote' %>
-  <%= link_to '▼', downvote_picture_path(@picture), id: 'downvote' %>
-</p>
+          <br><%= f.label :comment %><br>
+          <%= f.text_field :comment %><br><br>
+          <%= f.submit 'Post comment', :class => "btn btn-primary" %>
 
-<%= link_to 'Edit', edit_picture_path(@picture), :class => "btn btn-primary btn-sm" %> 
-<%= link_to 'Back', pictures_path, :class => "btn btn-primary btn-sm" %><br>
-
-<p><strong>What a purr-fect picture!</strong></p>
-
-<img src=<%= @picture.image.to_s %>>
-
-<% if user_signed_in? %>
-
-  <%= form_for [@picture, @comment] do |f| %>
-
-    <br><%= f.label :comment %><br>
-    <%= f.text_field :comment %><br><br>
-    <%= f.submit 'Post comment', :class => "btn btn-primary" %>
-
-  <%- end -%>
-
- <% else %>
- 
-   <a href="<%= new_user_session_path %>">Sign In To Comment</a>
-
-<%- end -%>
+        <%- end -%>
+    </div>
+    <% else %>
+      <a href="<%= new_user_session_path %>">Sign In To Comment</a>
+    <%- end -%>
 
 <% @picture.comments.each do |comment| %>
   <div class='comment'><br>
@@ -36,5 +38,7 @@
   <%= link_to '▲', upvote_picture_comment_path(@picture, comment.id), id: 'comment_upvote_#{comment.id}' %>
   <%= link_to '▼', downvote_picture_comment_path(@picture, comment.id), id: 'comment_downvote_#{comment.id}' %>
   </div>
+
 <%- end -%>
 
+</div>

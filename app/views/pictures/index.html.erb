@@ -1,13 +1,16 @@
+<div class="jumbotron">
+  <div class="container">
+    <h3>Search</h3> 
+    <%= search_form_for @q do |f| %> 
+      <%= f.text_field :title_cont, class:'col-md-6 input-lg'%>
+      <p><%= f.submit 'Search', class:'col-md-1 this_button btn btn-primary' %></p>
+    <% end %>
+    <div class='cat_icon'></div>
+    <div style='clear:both;'></div>
+  </div>
+</div>
 
-<%= search_form_for @q do |f| %>
 
- 
-  <%= f.text_field :title_cont, class:'col-md-4 input-lg' %>
-  <%= f.submit 'Search', class:'col-md-1 this_button btn btn-primary' %>
-<% end %>
-<div style='clear:both;'></div>
-
- 
 
 <% @pictures.each_with_index do |picture, index| %>
   <% if index.even? %>

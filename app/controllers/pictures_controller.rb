@@ -25,19 +25,19 @@ class PicturesController < ApplicationController
 
   def create
     @picture = Picture.new(picture_params)
-    @picture.user_id = current_user.id
-
-    data_type = picture_params[:image].headers.split(' ')[5]
-
-
-    if @picture.save
-        redirect_to picture_path(@picture),
-          notice: "What a purr-fect picture!"
+    if current_user != nil
+      @picture.user_id = current_user.id
+      data_type = picture_params[:image].headers.split(' ')[5]
+      if @picture.save
+          redirect_to picture_path(@picture),
+            notice: "What a purr-fect picture!"
+      else
+        redirect_to new_picture_path, notice: "Error"
+      end
     else
-      redirect_to new_picture_path, notice: "Error"
+      redirect_to new_picture_path, notice: "Please Sign In"
     end
   end
-
   def update
     respond_to do |format|
       if @picture.update(picture_params)

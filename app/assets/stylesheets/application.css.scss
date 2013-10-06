@@ -14,14 +14,39 @@
  *= require_tree .
  */
 
+
+//overrides 
+body{
+  background-color:#DBDBE8 !important;
+}
+.jumbotron{
+  background-color:#F3F5F3 !important;
+  background-image:url(/icons/cat_jump.svg) !important;
+  background-repeat: no-repeat;
+  background-position: 100% 25% !important;
+}
+.thumbnail{
+  background-image:url(/icons/cat_search.svg) !important;
+  background-repeat: no-repeat;
+  background-size: 25%;
+  background-position: 100% 100% !important;
+}
+.navbar{
+font-family: 'Limelight', cursive;
+font-size:20px;
+}
+h1, h2, h3, h4{
+ font-family: 'Limelight', cursive !important; 
+}
 .navbar-brand{
   width:50px;
   background-image: url(/icons/cat_benni.svg);
   background-size:100%;
   background-position: middle;
   background-repeat: no-repeat;
-}
 
+}
+// end overrides
 @import 'twitter/bootstrap'
 
 

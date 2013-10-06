@@ -1,15 +1,16 @@
-
-<div class="row">
-  <div class="col-md-4 col-md-offset-2">
-<h2>Upload a picture</h2>
-
-<%= simple_form_for @picture, :html => {role: "form", :multipart => true} do |f| %>
-<div class="form-group">
-<%= f.input :title, :class => "form-control" %>
-<%= f.file_field :image %>
-</div>
-<%= f.button :submit, :class => "btn btn-primary" %>          
-<% end %>
+<div class="jumbotron">
+  <div class="container">
+  <div class="col-md-8 col-md-offset-2">
+    <h1>Upload a picture</h1>
+    <%= simple_form_for @picture, :html => {role: "form", :multipart => true} do |f| %>
+       <div class="form-group">
+        <h2><%= f.input :title, :class => "form-control" %></h2>
+          <%= f.file_field :image %>
+        </div>
+        <%= f.button :submit, :class => "btn btn-primary" %> 
+    <% end %>
   </div>
-
+  </div>
 </div>
+
+
