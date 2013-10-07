@@ -5,11 +5,11 @@ Devise.setup do |config|
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
   secret = ENV['CRITTERCONTAINER_SECRET']
-  if secret.length < 30
-    raise "Rails secret token cannot be loaded"
-  else
-    config.secret_key = secret
-  end
+  # if secret.length < 30
+  #   raise "Rails secret token cannot be loaded"
+  # else
+  #   config.secret_key = secret
+  # end
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
