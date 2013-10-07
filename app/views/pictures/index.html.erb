@@ -1,8 +1,9 @@
 <div class="jumbotron">
   <div class="container">
-    <h3>Search</h3> 
-    <%= search_form_for @q do |f| %> 
-      <%= f.text_field :title_cont, class:'col-md-6 input-lg'%>
+  
+    <%= search_form_for @q, html: { class: 'form-inline' } do |f| %> 
+      
+      <%= f.text_field :title_cont, class:'col-md-6 input-lg', placeholder: 'Search for Kittenzz'%>
       <p><%= f.submit 'Search', class:'col-md-1 this_button btn btn-primary' %></p>
     <% end %>
     <div class='cat_icon'></div>
@@ -21,13 +22,14 @@
         <div class="caption">
           <h3><%= picture.title %></h3>
             <p>
-          <!--   <%= link_to '▲', upvote_picture_path(picture), class:'btn btn-primary', id: 'upvote' %>
-            <%= link_to '▼', downvote_picture_path(picture), class:'btn btn-default', id: 'downvote' %> -->
-            <a class= 'btn btn-primary' href='#' 
-            onclick='submit_pic_upvote(<%= picture.id %>)' id='upvote'>▲</a>
-            <a class= 'btn btn-primary' href='#' 
-            onclick='submit_pic_downvote(<%= picture.id %>)' id='downvote'>▼</a>
+              
             <% if user_signed_in? %>
+              
+              <a class= 'btn btn-primary' href='#' 
+              onclick='submit_pic_upvote(<%= picture.id %>)' id='upvote'>▲</a>
+              <a class= 'btn btn-primary' href='#' 
+              onclick='submit_pic_downvote(<%= picture.id %>)' id='downvote'>▼</a>
+
               <a style='float:right'class='btn btn-primary' onclick='comment_toggle(<%=picture.id%>);'> Comment </a>
                 <div class='commentForm' id="comment_<%=picture.id%>">
                 <%= form_for [picture, @comment] do |f| %>

@@ -1,6 +1,6 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
-
+  before_filter :authenticate_user!, only: :edit
   def index
     @comment = Comment.new 
 
@@ -21,6 +21,7 @@ class PicturesController < ApplicationController
   end
 
   def edit
+    redirect_to @picture if current_user != @picture.user
   end
 
   def create
@@ -87,8 +88,14 @@ class PicturesController < ApplicationController
       params.require(:picture).permit(:title, :image, :user_id)
     end
 
-    def record_vote(value)
-       @picture = Picture.find(params[:id])
+    def record_vote(value)      
+      
+      if params[:id].to_i.to_s == params[:id]  
+        @picture = Picture.find(params[:id]) 
+      else
+        @picture = Picture.find_by_url(params[:id]) 
+      end
+
       if user_signed_in? 
  
         vote = @picture.votes.find_or_initialize_by(user_id: current_user.id)
