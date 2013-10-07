@@ -88,7 +88,9 @@ class PicturesController < ApplicationController
     end
 
     def record_vote(value)
+       @picture = Picture.find(params[:id])
       if user_signed_in? 
+ 
         vote = @picture.votes.find_or_initialize_by(user_id: current_user.id)
         vote.value = value
         vote.save
