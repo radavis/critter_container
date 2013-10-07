@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
@@ -52,6 +52,7 @@ gem 'ransack'
 gem 'simple_form'
 gem 'state_machine'
 gem 'stringex'
+gem 'fog'
 
 group :test, :development do
   gem 'capybara'
