@@ -4,8 +4,7 @@ Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  secret = ENV['CRITTERCONTAINER_DEVISE_SECRET']
-  config.secret_key = secret
+  config.secret_key = ENV['CRITTERCONTAINER_DEVISE_SECRET']
   # if secret.length < 30
   #   raise "Rails secret token cannot be loaded"
   # else
