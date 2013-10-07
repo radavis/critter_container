@@ -10,8 +10,15 @@ class PicturesController < ApplicationController
   end
 
   def show
+    # if params[:id].match(/\d/)  
+    #   @picture = Picture.find(params[:id]) 
+    #   else
+    #     @picture = Picture.find_by_url(params[:id]) 
+    #   end
+          @picture = Picture.try(:find_by_url, params[:id]) || Picture.try(:find, params[:id])
 
-    @picture = Picture.find_by_url(params[:id])
+
+    # @picture = Picture.find_by_url(params[:id])
     
     @comment = Comment.new 
   end
@@ -90,11 +97,13 @@ class PicturesController < ApplicationController
 
     def record_vote(value)      
       
-      if params[:id].to_i.to_s == params[:id]  
-        @picture = Picture.find(params[:id]) 
-      else
-        @picture = Picture.find_by_url(params[:id]) 
-      end
+      # if params[:id].match(/\d/)  
+      # @picture = Picture.find(params[:id]) 
+      # else
+      #   @picture = Picture.find_by_url(params[:id]) 
+      # end
+
+      @picture = Picture.try(:find_by_url, params[:id]) || Picture.try(:find, params[:id])
 
       if user_signed_in? 
  

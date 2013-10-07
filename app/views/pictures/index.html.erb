@@ -17,8 +17,9 @@
   <% if index.even? %>
     <div style='float:left'class="cont col-sm-8 col-md-8 col-xs-8">
       <div class="thumbnail">
-          <img href='<%= picture_path(picture)%>' src=<%= picture.image.to_s %>>  
-      
+          <a href="/pictures/<%=picture.id%>">
+            <img href='<%= picture_path(picture)%>' src=<%= picture.image.to_s %>>  
+            </a>
         <div class="caption">
           <h3><%= picture.title %></h3>
             <p>
@@ -89,7 +90,9 @@
     </div>
   <div style='float:right;' class=" cont col-sm-8 col-md-8 col-xs-8">  
       <div class="thumbnail">
-          <img href='<%= picture_path(picture)%>' src=<%= picture.image.to_s %>>  
+          <a href="/pictures/<%=picture.id%>">
+            <img href='<%= picture_path(picture)%>' src=<%= picture.image.to_s %>>
+            </a>  
         <div class="caption">
           <h3><%= picture.title %></h3>
             <p>
