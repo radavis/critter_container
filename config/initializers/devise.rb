@@ -5,6 +5,7 @@ Devise.setup do |config|
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
   secret = ENV['CRITTERCONTAINER_DEVISE_SECRET']
+  Rails.logger.info(secret)
   if secret.length < 30
     raise "Rails secret token cannot be loaded"
   else
