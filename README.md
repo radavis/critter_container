@@ -21,7 +21,7 @@ Everything.
 
 Collaborators
 -------------
-akanic
+akainic
 ashleytbasinger
 dmehrotra
 radavis
