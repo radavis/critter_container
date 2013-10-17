@@ -1,6 +1,8 @@
 Critter Container
 =================
 
+Visit our page at: http://lit-reef-2876.herokuapp.com/
+
 Gems
 ----
 * devise
