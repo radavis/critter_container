@@ -10,9 +10,11 @@
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
 
-secret = ENV['CRITTERCONTAINER_SECRET']
-if secret.length < 30
-  raise "Rails secret token cannot be loaded"
-else
-  CritterContainer::Application.config.secret_token = secret
-end
+# secret = ENV['CRITTERCONTAINER_SECRET']
+# if secret.length < 30
+#   raise "Rails secret token cannot be loaded"
+# else
+#   CritterContainer::Application.config.secret_token = secret
+# end
+
+CritterContainer::Application.config.secret_key_base = ENV['CRITTERCONTAINER_SECRET']
